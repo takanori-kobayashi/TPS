@@ -65,11 +65,6 @@ public class GameState : MonoBehaviour
     public static INTTERMISSION_STATE m_InterMissionState { get; private set; } = INTTERMISSION_STATE.STATE1;
 
     /// <summary>
-    /// ゲーム状態変化フラグ
-    /// </summary>
-    private bool m_GameStateTransFlg = false;
-
-    /// <summary>
     /// ステージ数
     /// </summary>
     public static STAGE m_GameStateStage { get; private set; } = STAGE.STAGE_01;
@@ -166,7 +161,7 @@ public class GameState : MonoBehaviour
         }
 
         // ステージのセット
-        m_GameStateStage = STAGE.STAGE_05;
+        m_GameStateStage = STAGE.STAGE_01;
         StageSet(m_GameStateStage);
 
         // 初期化
@@ -176,7 +171,18 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if ( 0.0f < Input.GetAxisRaw("Cancel") )
+        {
+            //マウスカーソルの表示
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        if (0.0f < Input.GetAxisRaw("Fire1"))
+        {
+            //マウスカーソルの非表示
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     private void FixedUpdate()

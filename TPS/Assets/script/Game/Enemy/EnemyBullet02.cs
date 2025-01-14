@@ -4,6 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 敵の弾2(直線)
+/// アタッチ:EnemyBullet02
 /// </summary>
 public class EnemyBullet02 : MonoBehaviour
 {

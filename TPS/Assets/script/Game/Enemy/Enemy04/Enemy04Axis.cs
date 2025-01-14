@@ -116,7 +116,7 @@ public class Enemy04Axis : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
 
         //デバッグ表示
-        Debug.DrawRay(transform.position, transform.forward * 40.0f, Color.green);
+        Debug.DrawRay(transform.position, transform.forward * 150.0f, Color.green);
 
         // インターミッション時は動作しない
         if (GameState.STATE.INTERMISSION == GameState.m_GameStateNow)
@@ -126,7 +126,7 @@ public class Enemy04Axis : MonoBehaviour
 
         //プレイヤーとの距離計算
         distance = (transform.position - player.transform.position).magnitude;
-        if (100.0f < distance)
+        if (150.0f < distance)
         {
             return;
         }
@@ -138,7 +138,7 @@ public class Enemy04Axis : MonoBehaviour
         if (m_AimHitFlg == false)
         {
 
-            if (Physics.Raycast(ray, out hit, 40.0f, m_layerMask))
+            if (Physics.Raycast(ray, out hit, 140.0f, m_layerMask))
             {
                 if (true == TagCheck.EnemyAimHitPlayerCheck(hit.collider))
                 {

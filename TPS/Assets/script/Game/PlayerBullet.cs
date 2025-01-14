@@ -18,7 +18,7 @@ public class PlayerBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Object.Destroy(this.gameObject, 0.5f);
+        Object.Destroy(this.gameObject, 0.35f);
     }
 
     private void FixedUpdate()

@@ -31,7 +31,9 @@ public class PlayerDamage : MonoBehaviour
 
 
         // インターミッション時は無敵
-        if (GameState.STATE.INTERMISSION == GameState.m_GameStateNow)
+        if ( GameState.STATE.INTERMISSION == GameState.m_GameStateNow ||
+             GameState.STATE.STAGECLEAR == GameState.m_GameStateNow ||
+             GameState.STATE.GAMEOVER == GameState.m_GameStateNow)
         {
             return;
         }

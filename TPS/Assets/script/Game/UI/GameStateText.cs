@@ -10,7 +10,7 @@ using UnityEngine.UI;
 /// </summary>
 public class GameStateText : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI text; //TextMeshProの変数宣言
+    [SerializeField] TextMeshProUGUI text = default; //TextMeshProの変数宣言
 
     // Start is called before the first frame update
     void Start()

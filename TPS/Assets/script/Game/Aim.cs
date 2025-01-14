@@ -104,27 +104,6 @@ public class Aim : MonoBehaviour
                 m_OnTagName = "";
             }
         }
-#if false
-            if (dic.ContainsKey(hit.collider.tag))
-            {
-                if (true == dic[hit.collider.tag])
-                {
-                    m_AimPos = hit.point;
-                    m_OnTagName = hit.collider.tag;
-                }
-                else
-                {
-                    m_AimPos = ray.GetPoint(m_rayDistance);
-                    m_OnTagName = "";
-                }
-            }
-            else
-            {
-                m_AimPos = ray.GetPoint(m_rayDistance);
-                m_OnTagName = "";
-            }
-#endif
-    
         else
         {
             m_AimPos = ray.GetPoint(m_rayDistance);

@@ -100,7 +100,7 @@ public class Enemy03 : MonoBehaviour
 
         //プレイヤーとの距離計算
         distance = (transform.position - player.transform.position).magnitude;
-        if (20.0f < distance)
+        if (40.0f < distance)
         {
             GetComponent<Rigidbody>().velocity = transform.forward.normalized * 0;
             return;

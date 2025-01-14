@@ -47,6 +47,7 @@ public class SoundPlay : MonoBehaviour
             }
             catch (Exception e)
             {
+                Assertion.Assert(e);
                 Assertion.Assert(true, se.ToString());
             }
         }
@@ -74,6 +75,7 @@ public class SoundPlay : MonoBehaviour
             }
             catch (Exception e)
             {
+                Assertion.Assert(e);
                 Assertion.Assert(true, se.ToString());
             }
         }

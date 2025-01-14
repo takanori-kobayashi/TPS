@@ -102,7 +102,6 @@ public class PlayerCamera : MonoBehaviour
     /// </summary>
     //private readonly float ROTATE_SPEED = 10.0f;
 
-    private float CamaeraCh = 0.0f;
     private bool bCameraChFlg = false;
 
     public float RotationSensitivity = 200f;// 感度
@@ -250,10 +249,16 @@ public class PlayerCamera : MonoBehaviour
     private void MoveTpsCamera()
     {
         // 有効視野の変更(加算)
-        if ( CameraComp.fieldOfView < POV_MAX )
-        {
-            CameraComp.fieldOfView += 1;
-        }
+        // FixedUpdateに移動
+        //if ( CameraComp.fieldOfView < POV_MAX )
+        //{
+        //    CameraComp.fieldOfView += 1;
+        //
+        //    if (CameraComp.fieldOfView > POV_MAX)
+        //    {
+        //        CameraComp.fieldOfView = POV_MAX;
+        //    }
+        //}
 
         // カメラ切り替え時の移動中ではない場合
         if ( false == m_CameraChMoveFlg )
@@ -279,8 +284,8 @@ public class PlayerCamera : MonoBehaviour
             }
 
             // マウスの移動量
-            mouseInputX = MouseInputXtmp * Time.deltaTime * RotationSensitivity;
-            mouseInputY = MouseInputYtmp * Time.deltaTime * RotationSensitivity;           
+            mouseInputX = MouseInputXtmp;// * Time.deltaTime * RotationSensitivity;
+            mouseInputY = MouseInputYtmp;// * Time.deltaTime * RotationSensitivity;           
 
             // カメラがプレイヤーの真上や真下にあるときにそれ以上回転させないようにする
             if (transform.forward.y > 0.6f && mouseInputY < 0)
@@ -323,11 +328,17 @@ public class PlayerCamera : MonoBehaviour
     /// </summary>
     private void MoveFpsCamera()
     {
+        // FixedUpdateに移動
         // 有効視野の変更(減算)
-        if (CameraComp.fieldOfView > POV_MIN)
-        {
-            CameraComp.fieldOfView -= 1;
-        }
+        //if (CameraComp.fieldOfView > POV_MIN)
+        //{
+        //    CameraComp.fieldOfView -= 1;
+        //
+        //    if( CameraComp.fieldOfView < POV_MIN )
+        //    {
+        //        CameraComp.fieldOfView = POV_MIN;
+        //    }
+        //}
 
         // targetの移動量分、自分（カメラ）も移動する
         transform.position += PlayerBarrelObj.transform.position - targetPos;
@@ -335,8 +346,10 @@ public class PlayerCamera : MonoBehaviour
 
 
         // マウスの移動量
-        mouseInputX = Input.GetAxis("Mouse X") * Time.deltaTime * RotationSensitivity;
-        mouseInputY = Input.GetAxis("Mouse Y") * Time.deltaTime * RotationSensitivity;
+        //mouseInputX = Input.GetAxis("Mouse X") * Time.deltaTime * RotationSensitivity;
+        //mouseInputY = Input.GetAxis("Mouse Y") * Time.deltaTime * RotationSensitivity;
+        mouseInputX = Input.GetAxis("Mouse X");
+        mouseInputY = Input.GetAxis("Mouse Y");
 
         // カメラがプレイヤーの真上や真下にあるときにそれ以上回転させないようにする
         if (transform.forward.y > 0.6f && mouseInputY < 0)
@@ -559,11 +572,47 @@ public class PlayerCamera : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // インターミッション時
+        if (GameState.STATE.INTERMISSION == GameState.m_GameStateNow)
+        {
+        }
+        switch (m_CameraType)
+        {
+            case CAMERATYPE_TPS:
+                // 有効視野の変更(加算)
+                if (CameraComp.fieldOfView < POV_MAX)
+                {
+                    CameraComp.fieldOfView += 10;
+
+                    if (CameraComp.fieldOfView > POV_MAX)
+                    {
+                        CameraComp.fieldOfView = POV_MAX;
+                    }
+                }
+                break;
+            case CAMERATYPE_FPS:
+                // 有効視野の変更(減算)
+                if (CameraComp.fieldOfView > POV_MIN)
+                {
+                    CameraComp.fieldOfView -= 10;
+
+                    if (CameraComp.fieldOfView < POV_MIN)
+                    {
+                        CameraComp.fieldOfView = POV_MIN;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     //インターミッション時のカメラの位置設定
     public void InitInterMissionCameraSet()
     {
+        // カメラタイプをTPS
+        m_CameraType = CAMERATYPE_TPS;
+
         //位置をセット
         transform.position = new Vector3(0.0f, 39.14f, -63.31f);
         //角度セット
@@ -577,6 +626,8 @@ public class PlayerCamera : MonoBehaviour
     {
         // カメラタイプをTPS
         m_CameraType = CAMERATYPE_TPS;
+
+        CameraComp.fieldOfView = POV_MAX;
 
         // カメラ切り替えフラグON
         m_CameraTypeChFlg = true;

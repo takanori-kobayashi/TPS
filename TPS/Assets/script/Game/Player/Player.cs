@@ -123,6 +123,11 @@ public class Player : MonoBehaviour
     private int m_PlayerDeadCnt = 0;
 
     /// <summary>
+    /// プレイヤーの爆発までの状態
+    /// </summary>
+    private int m_PlayerDeadState = 0;
+
+    /// <summary>
     /// プレイヤーのライフ
     /// </summary>
     private static float m_PlayerLife = 100.0f;
@@ -177,6 +182,11 @@ public class Player : MonoBehaviour
     /// </summary>
     public Vector3 m_moveForward { get; private set; }
 
+    /// <summary>
+    /// プレイヤーを表示しているオブジェクト
+    /// </summary>
+    [SerializeField] private Renderer[] m_PlayerRendererObj = default;//Renderer型の変数aを宣言　好きなゲームオブジェクトをアタッチ
+
     // Start is called before the first frame update
     void Start()
     {
@@ -193,6 +203,7 @@ public class Player : MonoBehaviour
 
         Assertion.Assert(m_ExplosionObj);
         Assertion.Assert(m_BreakEffObj);
+       
     }
 
     // Update is called once per frame
@@ -208,6 +219,15 @@ public class Player : MonoBehaviour
             m_CameraModeKey = Input.GetAxisRaw("視点変更");
             m_CameraFrontRotKey = Input.GetAxisRaw("正面回転");
         }
+        else
+        {
+            m_inputHorizontal = 0;
+            m_inputVertical = 0;
+            m_JumpKey = 0;
+            m_CameraModeKey = 0;
+            m_CameraFrontRotKey = 0;
+        }
+
 
     }
 
@@ -329,8 +349,8 @@ public class Player : MonoBehaviour
         // 死亡した場合
         if (true == m_PlayerDeadFlg)
         {
-            //カウント
-            if (m_PlayerDeadCnt < 60)
+            //最初の状態
+            if(0 == m_PlayerDeadState )
             {
                 if (0 == m_PlayerDeadCnt)
                 {
@@ -348,8 +368,15 @@ public class Player : MonoBehaviour
 
                 }
                 m_PlayerDeadCnt++;
+
+                //カウント
+                if ( 60 < m_PlayerDeadCnt )
+                {
+                    m_PlayerDeadState = 1;
+                }
             }
-            else
+            //次の状態
+            else if( 1 == m_PlayerDeadState )
             {
                 if (m_ExplosionObj != null)
                 {
@@ -363,11 +390,35 @@ public class Player : MonoBehaviour
                     UnityEngine.Object.Destroy(Oexp, 2.0f);
                 }
 
-                UnityEngine.Object.Destroy(this.gameObject);
+                //UnityEngine.Object.Destroy(this.gameObject);
+                // 爆発と同時に見た目を非表示に
+                // ※Destroyだと関連付けたものがエラーになるため
+                PlayerObjectDisp(false);
+
+                //次の状態へ
+                m_PlayerDeadState = 2;
+            }
+            //最後の状態
+            else
+            {
+                // 爆発と同時に見た目を非表示に
+                // ※Destroyだと関連付けたものがエラーになるため
+                PlayerObjectDisp(false);
             }
 
             //保険用のオブジェクト破棄
-            UnityEngine.Object.Destroy(this.gameObject, 10.0f);            
+            //UnityEngine.Object.Destroy(this.gameObject, 10.0f);            
+        }
+    }
+
+    /// <summary>
+    /// プレイヤーのオブジェクトの表示非表示
+    /// </summary>
+    private void PlayerObjectDisp(bool enable)
+    {
+        for (int i = 0; i < m_PlayerRendererObj.Length; i++)
+        {
+            m_PlayerRendererObj[i].enabled = enable;
         }
     }
 

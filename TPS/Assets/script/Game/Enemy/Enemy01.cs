@@ -89,7 +89,7 @@ public class Enemy01 : MonoBehaviour
 
         //プレイヤーとの距離計算
         distance = (transform.position - player.transform.position).magnitude;
-        if (20.0f < distance) return;
+        if (40.0f < distance) return;
 
         destination = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
         loatate = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
