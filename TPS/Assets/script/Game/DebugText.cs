@@ -1,5 +1,5 @@
 ﻿//デバッグ表示時コメントをはずす
-//#define DEBUG_TEXT_DISP
+#define DEBUG_TEXT_DISP
 
 using System.Collections;
 using System.Collections.Generic;
@@ -38,9 +38,6 @@ public class DebugText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AddText("test", 100, 100, 100, 100);
-        AddText("test2", 100, 130, 100, 100);
-        AddText("test3", 100, 130, 100, 100);
     }
 
     // Update is called once per frame

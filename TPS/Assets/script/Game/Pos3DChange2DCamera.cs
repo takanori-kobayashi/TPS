@@ -98,9 +98,6 @@ public class Pos3DChange2DCamera : MonoBehaviour
         m_Aimpos = transform.position;
         //transform.position = new Vector3(100,100,0);
 
-        string teststr = "labelpos:" + labelPos.x.ToString() + " " + labelPos.y.ToString();
-        DebugText.SetText(teststr, 100, 0, 200, 100, 0);
-
         // 照準のサイズ変更
         if (m_AimCameraMode != Player.m_CameraMode)
         {

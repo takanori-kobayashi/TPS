@@ -121,11 +121,6 @@ public class PlayerCamera : MonoBehaviour
 
     private Transform TransCameraTowars;
 
-    /// <summary>
-    /// デバッグ用
-    /// </summary>
-    int debugnum = 0;
-
     void Start()
     {
         //オブジェクト取得
@@ -180,8 +175,6 @@ public class PlayerCamera : MonoBehaviour
 
         //GameStateObj = GameObject.Find("GameState");
         //gamestate = GameStateObj.GetComponent<GameState>();
-
-        debugnum = DebugText.AddText("mouseInputY" + mouseInputY, 100, 200, 100, 100);
 
         var lookAt = PlayerObj.transform.position;// + Vector3.up * HeightM;
         transform.RotateAround(lookAt, transform.right, 0.0f);
@@ -564,8 +557,6 @@ public class PlayerCamera : MonoBehaviour
                     break;
             }
         }
-
-        //DebugText.SetText("transform.right: " + transform.right, 100, 200, 100, 100,debugnum);
 #endif
     }
 

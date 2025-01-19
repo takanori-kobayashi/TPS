@@ -3,3 +3,4 @@ D:\UnityProject\TPS\Temp\bin\Debug\Assembly-CSharp.pdb
 D:\UnityProject\TPS\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
 D:\UnityProject\TPS\obj\Debug\Assembly-CSharp.dll
 D:\UnityProject\TPS\obj\Debug\Assembly-CSharp.pdb
+D:\UnityProject\TPS\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache

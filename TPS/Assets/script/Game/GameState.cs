@@ -110,6 +110,26 @@ public class GameState : MonoBehaviour
     private GameObject StageExeObj;
 
 
+    /// <summary>
+    /// UpdateのFPS
+    /// </summary>
+    private float m_UpdateFps;
+
+    /// <summary>
+    /// FixedUpdateのFPS
+    /// </summary>
+    private float m_FixedUpdateFps;
+
+    /// <summary>
+    /// デバッグ用
+    /// </summary>
+    int m_debugnum00 = 0;
+
+    /// <summary>
+    /// デバッグ用
+    /// </summary>
+    int m_debugnum01 = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -166,6 +186,11 @@ public class GameState : MonoBehaviour
 
         // 初期化
         InitState();
+
+        //Application.targetFrameRate = 120; // 30fpsに設定
+        m_debugnum00 = DebugText.AddText("", 10, 10, 100, 100);
+        m_debugnum01 = DebugText.AddText("", 10, 30, 100, 100);
+
     }
 
     // Update is called once per frame
@@ -183,10 +208,18 @@ public class GameState : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+
+        // UpdateのFPS表示
+        m_UpdateFps = 1f / Time.deltaTime;
+        DebugText.SetText( "Update:" + m_UpdateFps.ToString(), 10, 10, 300, 100, m_debugnum00);
     }
 
     private void FixedUpdate()
     {
+        // FixedUpdateのFPS表示
+        m_FixedUpdateFps = 1f / Time.deltaTime;
+        DebugText.SetText("FixedUpdate:" + m_FixedUpdateFps.ToString(), 10, 30, 300, 100, m_debugnum01);
+
         //状態切り替え時
         if (m_GameStateOld != m_GameStateNow)
         {
