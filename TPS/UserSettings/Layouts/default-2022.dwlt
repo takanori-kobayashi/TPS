@@ -413,9 +413,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 707cfeffc07cfeff9aa3feffa8a3feff02fefeff52fefeff2c25ffff3a25ffff243bffff743bffff2c62ffff3a62ffff2667ffff7667ffff608effff768effff26fbffff
+      m_SelectedIDs: 0c5f0000
+      m_LastClickedID: 24332
+      m_ExpandedIDs: b088ffff26fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -934,7 +934,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/script/Game/Player
+    - Assets/script/Game
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -942,15 +942,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/script/Game/Player
+  - Assets/script/Game
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\UnityProject\TPS
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 239}
-    m_SelectedIDs: 34620000
-    m_LastClickedID: 25140
+    scrollPos: {x: 0, y: 191}
+    m_SelectedIDs: 08620000
+    m_LastClickedID: 25096
     m_ExpandedIDs: 0000000006620000086200000a6200000c6200000e6200001062000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1031,7 +1031,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 37}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207

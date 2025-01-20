@@ -187,7 +187,8 @@ public class GameState : MonoBehaviour
         // 初期化
         InitState();
 
-        //Application.targetFrameRate = 120; // 30fpsに設定
+        //FPS表示
+        DebugText.AllClear(); //初期化
         m_debugnum00 = DebugText.AddText("", 10, 10, 100, 100);
         m_debugnum01 = DebugText.AddText("", 10, 30, 100, 100);
 
