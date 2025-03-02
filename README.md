@@ -23,3 +23,5 @@ Unityプロジェクト(2022.3.16f1)
 |ショット/ゲームスタート        |左クリック	            |
 |視点変更       |右クリック	            |
 |方向変換         |マウス動作	          |
+
+![TPS](https://github.com/user-attachments/assets/7c2229ea-cd22-485d-a4b2-4f332ef4f2a6)
